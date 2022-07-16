@@ -1,0 +1,13 @@
+<% if patient_signed_in? || doctor_signed_in? %>
+  <% if patient_signed_in? %>
+    <%= current_patient.first_name %>
+    <%= button_to 'Log out', destroy_patient_session_path, method: :delete %>
+  <% else %>
+    <%= Patient.all.map { |p| p.first_name } %>
+    <%= button_to 'Log out', destroy_doctor_session_path, method: :delete %>
+  <% end %>
+<% else %>
+  <%= link_to 'New Patient', new_patient_registration_path %>
+  <%= link_to 'New Doctor', new_doctor_registration_path %>
+  <%= link_to 'New Nurse', new_nurse_registration_path %>
+<% end %>
