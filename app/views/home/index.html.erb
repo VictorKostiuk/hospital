@@ -3,7 +3,17 @@
     <%= current_patient.first_name %>
     <%= button_to 'Log out', destroy_patient_session_path, method: :delete %>
   <% else %>
-    <%= Patient.all.map { |p| p.first_name } %>
+    <p>
+      <% Patient.all.map do |p| %>
+        <b>
+          <%= p.first_name %> |
+          <%= p.status %>
+        </b>
+        <% Patient::STATUSES.each do |status| %>
+          <%= button_to status, update_status_patient_path(p, status: status), method: :patch %>
+        <% end %>
+      <% end %>
+    </p>
     <%= button_to 'Log out', destroy_doctor_session_path, method: :delete %>
   <% end %>
 <% else %>
