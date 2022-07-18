@@ -1,0 +1,10 @@
+%p
+  - @patients.map do |p|
+    %b
+      = p.first_name
+      |
+      = p.status
+    .row
+      - Patient::STATUSES.each do |status|
+        .col-md-1
+          = button_to status, update_status_patient_path(p, status: status), method: :patch, class: 'btn btn-dark'

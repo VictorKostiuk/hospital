@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :nurses
   devise_for :patients
+  resources :appointments
   resources :patients do
     member do
       patch :update_status

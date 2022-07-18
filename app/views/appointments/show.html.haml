@@ -1,0 +1,15 @@
+%p
+  %b
+    Topic:
+  = @appointment.topic
+%p
+  %b
+    Diagnosis:
+  = @appointment.diagnosis
+%p
+  %b
+    Referral:
+  = @appointment.referral
+
+= link_to 'Back', appointments_path, class: 'btn btn-dark'
+= button_to 'Destroy', appointment_path(@appointment), method: :delete, class: 'btn btn-danger'

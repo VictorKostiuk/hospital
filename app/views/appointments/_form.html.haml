@@ -1,0 +1,37 @@
+= form_for @appointment do |form|
+  - if @appointment&.errors&.full_messages&.any?
+    .alert.alert-danger
+      %ul.mb-0
+        - @appointment.errors.full_messages.each do |msg|
+          %li= msg
+
+  .mb-3.mt-4.row
+    .col-sm-1.col-form-label
+      %strong= form.label :topic
+    .col-sm-9
+      = form.text_field :topic, autocomplete: "Topic", class: 'form-control form-control-lg'
+
+  %br/
+  .mb-3.row
+    .col-sm-1.col-form-label
+      %strong= form.label :diagnosis
+    .col-sm-9
+      = form.text_field :diagnosis, autocomplete: "Diagnosis", class: 'form-control form-control-lg'
+
+  %br/
+  .mb-3.row
+    .col-sm-1.col-form-label
+      %strong= form.label :patient_id
+    .col-sm-9
+      = form.select :patient_id, Patient.all.collect { |p| [p.first_name, p.id]}, {}, class: 'form-control form-control-lg'
+
+  %br/
+  .mb-3.row
+    .col-sm-1.col-form-label
+      %strong= form.label :referral
+    .col-sm-9
+      = form.select :referral, Appointment.referrals.keys, class: 'form-control form-control-lg'
+
+  %br/
+  .actions
+    = form.submit class: 'btn btn-dark mb-3'

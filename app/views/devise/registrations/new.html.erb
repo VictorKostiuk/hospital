@@ -3,37 +3,66 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+  <br>
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <strong><%= f.label :first_name %></strong>
+    </div>
+
+    <div class="col-sm-9">
+      <%= f.text_field :first_name, autofocus: true, autocomplete: "First name", class: 'form-control form-control-lg'   %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+  <br>
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <strong><%= f.label :last_name %></strong>
+    </div>
+
+    <div class="col-sm-9">
+      <%= f.text_field :last_name, autofocus: true, autocomplete: "Last name", class: 'form-control form-control-lg'   %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <br>
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <strong><%= f.label :email %></strong>
+    </div>
+
+    <div class="col-sm-9">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control form-control-lg'   %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  <br>
+  <div class="mb-3 row">
+
+    <div class="col-sm-2 col-form-label">
+      <strong><%= f.label :password %></strong>
+      <p>   <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %></p>
+    </div>
+    <div class="col-sm-8">
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'form-control form-control-lg'   %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <br>
+  <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">
+      <strong><%= f.label :password_confirmation %></strong>
+    </div>
+
+    <div class="col-sm-9">
+      <%= f.password_field :password_confirmation, autofocus: true, autocomplete: "new-password", class: 'form-control form-control-lg'   %>
+    </div>
   </div>
+  <br>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: 'btn btn-dark mb-3 mt-2' %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>

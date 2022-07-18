@@ -1,0 +1,29 @@
+- if doctor_signed_in? || nurse_signed_in?
+  - @appointments.each do |appointment|
+    %p
+      %b Topic
+      = appointment.topic
+    %p
+      %b Diagnosis
+      = appointment.diagnosis
+    %p
+      %b Referral
+      = appointment.referral
+    %p
+      = link_to 'show', appointment, class: 'btn btn-dark'
+  - if doctor_signed_in?
+    = link_to 'New appointment', new_appointment_path, class: 'btn btn-dark'
+- else
+  - @appointments.where(patient_id: current_patient).each do |appointment|
+    %p
+      %b Topic
+      = appointment.topic
+    %p
+      %b Diagnosis
+      = appointment.diagnosis
+    %p
+      %b Referral
+      = appointment.referral
+    %p
+      = link_to 'show', appointment, class: 'btn btn-dark'
+= link_to 'Back', root_path, class: 'btn btn-dark'
