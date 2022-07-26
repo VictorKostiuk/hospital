@@ -1,0 +1,23 @@
+= form_for @review do |form|
+  - if @review&.errors&.full_messages&.any?
+    .alert.alert-danger
+      %ul.mb-0
+        - @review.errors.full_messages.each do |msg|
+          %li= msg
+
+  .mb-3.mt-4.row
+    .col-sm-1.col-form-label
+      %strong= form.label :title
+    .col-sm-9
+      = form.text_field :title, autocomplete: "Topic", class: 'form-control form-control-lg'
+
+  %br/
+  .mb-3.row
+    .col-sm-1.col-form-label
+      %strong= form.label :body
+    .col-sm-9
+      = form.text_field :body, autocomplete: "Diagnosis", class: 'form-control form-control-lg'
+
+  %br/
+  .actions
+    = form.submit class: 'btn btn-dark mb-3'

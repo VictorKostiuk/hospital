@@ -5,5 +5,6 @@ class Doctor < ApplicationRecord
          :recoverable, :rememberable, :validatable, :authentication_keys => [:first_name, :last_name, :email,
                                                                              :password, :password_confirmation]
   has_many :appointments
+  has_many :medicine_participants, as: :participatable
   has_many :patients, through: :appointments
 end

@@ -18,3 +18,9 @@
 .container {
   margin:0 3% 0 3%;
 }
+.custom_div {
+  display: flex;
+  justify-content: center;
+  border: black solid 1px;
+  width: 130%;
+}

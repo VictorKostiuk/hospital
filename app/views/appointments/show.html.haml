@@ -8,8 +8,41 @@
   = @appointment.diagnosis
 %p
   %b
+    Patient:
+  = @patient.first_name
+%p
+  %b
     Referral:
-  = @appointment.referral
+    - if doctor_signed_in?
+      - if @appointment.referral == 'nothing_to_do'
+        Nothing to do
+      - else
+        = button_to @appointment.referral, update_referral_appointment_path(@appointment, appointment: {referral: 'nothing_to_do'} ), method: :patch
+
+    - else
+      = @appointment.referral
+  %p
+    %b
+      Participation history:
+.custom_div
+  %table.table
+    %thead
+      %tr
+        %th{:scope => "col"} #
+        %th{:scope => "col"} Full Name
+        %th{:scope => "col"} Last
+        %th{:scope => "col"} Handle
+    %tbody
+      - @appointment.medicine_participants.each do |participant|
+        %tr
+          %th{:scope => "row"}
+            %td
+              - if participant.participatable_type == "Doctor"
+                = Doctor.find_by(id: participant.id).first_name
+                = Doctor.find_by(id: participant.id).last_name
+              - elsif participant.participatable_type == "Nurse"
+                = Nurse.find_by(id: participant.id).first_name
+                = Nurse.find_by(id: participant.id).last_name
 
 = link_to 'Back', appointments_path, class: 'btn btn-dark'
 = button_to 'Destroy', appointment_path(@appointment), method: :delete, class: 'btn btn-danger'

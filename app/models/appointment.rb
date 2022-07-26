@@ -1,5 +1,6 @@
 class Appointment < ApplicationRecord
   belongs_to :doctor
   belongs_to :patient
-  enum referral: {procedures: 0, medicine: 1, operation: 2}
+  has_many :medicine_participants
+  enum referral: {nothing_to_do: 0, procedures: 1, medicine: 2, operation: 3}
 end
